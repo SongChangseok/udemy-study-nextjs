@@ -6,7 +6,7 @@ const handler = async (req, res) => {
     const { title, image, address, description } = data;
 
     const client = await MongoClient.connect(
-      "mongodb+srv://css:c5NFPWyHjfhisboW@cluster0.myhz0xz.mongodb.net/meetups?retryWrites=true&w=majority"
+      process.env.NEXT_PUBLIC_MONGODB_URL
     );
     const db = client.db();
     const meetupsCollection = db.collection("meetups");

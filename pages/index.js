@@ -11,13 +11,12 @@ const HomePage = ({ meetups }) => {
       </Head>
       <MeetupList meetups={meetups} />
     </>
-  );w
+  );
+  w;
 };
 
 export const getStaticProps = async () => {
-  const client = await MongoClient.connect(
-    "mongodb+srv://css:c5NFPWyHjfhisboW@cluster0.myhz0xz.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
+  const client = await MongoClient.connect(process.env.NEXT_PUBLIC_MONGODB_URL);
   const db = client.db();
   const meetupsCollection = db.collection("meetups");
   const meetups = await meetupsCollection.find().toArray();
